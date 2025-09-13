@@ -1,6 +1,6 @@
 {
   "name": "automation-server-worker-test",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsc -p tsconfig.json"
+    "build": "node --max-old-space-size=4096 ./node_modules/typescript/bin/tsc -p tsconfig.json",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "dependencies": {
     "@ai-sdk/openai": "2.0.12",
@@ -34,7 +35,9 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
+    "@types/node": "^24.3.2",
     "@types/write-file-atomic": "^4.0.3",
-    "@types/ws": "^8.18.1"
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.2"
   }
 }
